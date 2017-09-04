@@ -1,4 +1,4 @@
-FROM jmleroux/php:7.1
+FROM jmleroux/php:latest
 MAINTAINER JM Leroux <jmleroux.pro@gmail.com>
 
 # Define "root" as current user
