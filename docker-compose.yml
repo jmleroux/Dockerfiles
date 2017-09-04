@@ -14,7 +14,7 @@ services:
       - jmleroux
 
   fpm:
-    image: jmleroux/fpm:php-7.1
+    image: jmleroux/fpm:php-latest
     depends_on:
       - mysql
     environment:
