@@ -1,7 +1,5 @@
 ## Run from Docker hub
 
-Pull this image from [Docker hub](https://hub.docker.com/r/jmleroux/apache-php/):
-
 ```bash
 $ docker run --name jmleroux-apache-php -p 8080:80 -d jmleroux/apache-php
 ```

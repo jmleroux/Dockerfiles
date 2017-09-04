@@ -11,7 +11,7 @@ services:
     ports:
       - '23306:3306'
     networks:
-      - jmleroux
+      - jmleroux-network
 
   fpm:
     image: jmleroux/fpm:php-latest
@@ -30,7 +30,7 @@ services:
       - ~/.composer:/home/docker/.composer
     working_dir: /srv/jmleroux
     networks:
-      - jmleroux
+      - jmleroux-network
 
   httpd:
     image: httpd:2.4
@@ -42,10 +42,10 @@ services:
       - '8080:80'
     volumes:
       - ./:/srv/jmleroux:ro
-      - ./docker/httpd.conf:/usr/local/apache2/conf/httpd.conf
-      - ./docker/jmleroux.conf:/usr/local/apache2/conf/vhost.conf
+      - ./config/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./config/jmleroux.conf:/usr/local/apache2/conf/vhost.conf
     networks:
-      - jmleroux
+      - jmleroux-network
 
   node:
     image: node:8
@@ -55,7 +55,7 @@ services:
       - ~/.npm:/home/node/.npm
     working_dir: /srv/jmleroux
     networks:
-      - jmleroux
+      - jmleroux-network
 
 networks:
-  jmleroux: ~
+  jmleroux-network: ~

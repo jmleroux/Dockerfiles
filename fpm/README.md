@@ -1,7 +1,5 @@
 ## Run from Docker hub
 
-Pull this image from [Docker hub](https://hub.docker.com/r/jmleroux/apache-php/):
-
 ```bash
 $ docker run -d --name jmleroux-fpm jmleroux/fpm
 ```
