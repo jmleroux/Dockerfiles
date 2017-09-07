@@ -8,9 +8,9 @@ cwd=$(pwd)
 for (( i=0; i<${#images[@]}; i++ ));
 do
     if [ "$TAG" == "$latestTag" ]; then
-        path=${cwd}/${images[i]}
+        path=${cwd}/../${images[i]}
     else
-        path=${cwd}/${images[i]}/${TAG}
+        path=${cwd}/../${images[i]}/${TAG}
     fi
 
     cd ${path}

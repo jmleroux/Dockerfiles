@@ -6,4 +6,4 @@ env:
   - TAG=7.1
 
 script:
-  - ./run_tests.sh 7.1
+  - ./test/run_tests.sh 7.1
