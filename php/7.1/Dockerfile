@@ -13,24 +13,24 @@ RUN apt-get update && \
             /usr/share/doc/* /usr/share/groff/* /usr/share/info/* /usr/share/linda/* \
             /usr/share/lintian/* /usr/share/locale/* /usr/share/man/*
 
-# Add PHP 7.2 repository
+# Add PHP 7.1 repository
 RUN wget -O sury.gpg https://packages.sury.org/php/apt.gpg && apt-key add sury.gpg && rm sury.gpg
 COPY files/sury.list /etc/apt/sources.list.d/sury.list
 
 # Install PHP with some extensions
 RUN apt-get update && \
     apt-get --no-install-recommends --no-install-suggests --yes --quiet install \
-        php7.2-cli php7.2-apcu php7.2-mbstring php7.2-curl php7.2-gd php7.2-imagick php7.2-intl php7.2-bcmath \
-        php7.2-mysql php7.2-sqlite php7.2-soap php7.2-xdebug php7.2-xml php7.2-zip && \
+        php7.1-cli php7.1-apcu php7.1-mbstring php7.1-curl php7.1-gd php7.1-imagick php7.1-intl php7.1-bcmath \
+        php7.1-mcrypt php7.1-mysql php7.1-sqlite php7.1-soap php7.1-xdebug php7.1-xml php7.1-zip && \
     apt-get clean && apt-get --yes --quiet autoremove --purge && \
     rm -rf  /var/lib/apt/lists/* /tmp/* /var/tmp/* \
             /usr/share/doc/* /usr/share/groff/* /usr/share/info/* /usr/share/linda/* \
             /usr/share/lintian/* /usr/share/locale/* /usr/share/man/*
 
 # Configure PHP CLI
-RUN sed -i "s/;date.timezone =/date.timezone = Etc\/UTC/" /etc/php/7.2/cli/php.ini
+RUN sed -i "s/;date.timezone =/date.timezone = Etc\/UTC/" /etc/php/7.1/cli/php.ini
 
-COPY files/apcu.ini /etc/php/7.2/mods-available/apcu.ini
+COPY files/apcu.ini /etc/php/7.1/mods-available/apcu.ini
 
 RUN phpdismod xdebug
 
