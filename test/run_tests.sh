@@ -2,16 +2,12 @@
 
 didFail=1
 images=("php" "fpm" "apache-php")
-latestTag=$1
+TAG=$1
 
 cwd=$(pwd)
 for (( i=0; i<${#images[@]}; i++ ));
 do
-    if [ "$TAG" == "$latestTag" ]; then
-        path=${cwd}/${images[i]}
-    else
-        path=${cwd}/${images[i]}/${TAG}
-    fi
+    path=${cwd}/${images[i]}/${TAG}
 
     cd ${path}
     docker build -t jmleroux/${images[i]}:${TAG} .
