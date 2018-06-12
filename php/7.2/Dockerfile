@@ -21,17 +21,15 @@ COPY files/sury.list /etc/apt/sources.list.d/sury.list
 RUN apt-get update && \
     apt-get --no-install-recommends --no-install-suggests --yes --quiet install \
         php7.2-cli php7.2-apcu php7.2-mbstring php7.2-curl php7.2-gd php7.2-imagick php7.2-intl php7.2-bcmath \
-        php7.2-mysql php7.2-sqlite php7.2-soap php7.2-xdebug php7.2-xml php7.2-zip && \
+        php7.2-mysql php7.2-sqlite3 php7.2-soap php7.2-xdebug php7.2-xml php7.2-zip && \
     apt-get clean && apt-get --yes --quiet autoremove --purge && \
     rm -rf  /var/lib/apt/lists/* /tmp/* /var/tmp/* \
             /usr/share/doc/* /usr/share/groff/* /usr/share/info/* /usr/share/linda/* \
             /usr/share/lintian/* /usr/share/locale/* /usr/share/man/*
 
 # Configure PHP CLI
-RUN sed -i "s/;date.timezone =/date.timezone = Etc\/UTC/" /etc/php/7.2/cli/php.ini
-
-COPY files/apcu.ini /etc/php/7.2/mods-available/apcu.ini
-
+COPY files/jmleroux.ini /etc/php/7.2/mods-available/jmleroux.ini
+RUN phpenmod jmleroux
 RUN phpdismod xdebug
 
 # Add a "docker" user
@@ -51,5 +49,7 @@ RUN chmod a+x /usr/local/bin/entrypoint.sh
 # Define "docker" as current user
 USER docker
 WORKDIR /home/docker/
+
+ENV PATH=bin:vendor/bin:$PATH
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
