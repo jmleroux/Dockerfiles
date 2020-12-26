@@ -5,7 +5,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                php_version: ['7.4', '8.0']
+                php_version: ['8.0', '7.4', '7.3', '7.3-composer-1']
         steps:
             - uses: actions/checkout@v2
             - run: test/run_tests.sh ${{ matrix.php_version }}
