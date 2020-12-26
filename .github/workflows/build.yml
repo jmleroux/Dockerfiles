@@ -9,3 +9,9 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - run: test/run_tests.sh ${{ matrix.php_version }}
+
+    build_success:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - run: echo Great stuff!
