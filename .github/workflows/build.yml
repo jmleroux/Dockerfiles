@@ -3,6 +3,9 @@ on: [push]
 jobs:
     build_image:
         runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php_version: [7.4, 8.0]
         steps:
             - uses: actions/checkout@v2
-            - run: test/run_tests.sh 8.0
+            - run: test/run_tests.sh ${{ matrix.php_version }}
