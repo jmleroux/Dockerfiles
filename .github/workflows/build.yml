@@ -1,0 +1,8 @@
+name: build
+on: [push]
+jobs:
+    build_image:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - run: test/run_tests.sh
