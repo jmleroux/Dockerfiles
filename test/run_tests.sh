@@ -10,7 +10,7 @@ do
     path=${cwd}/${images[i]}/${TAG}
 
     cd ${path}
-    docker build -t jmleroux/${images[i]}:${TAG} .
+    docker build --no-cache -t jmleroux/${images[i]}:${TAG} .
 
     if docker inspect jmleroux/${images[i]}:${TAG} &> /dev/null; then
         didFail=0

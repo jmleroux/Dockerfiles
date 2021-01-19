@@ -15,8 +15,6 @@ RUN apt-get update && \
 # Configure PHP Apache
 RUN sed -i "s/;date.timezone =/date.timezone = Etc\/UTC/" /etc/php/7.2/apache2/php.ini
 
-RUN phpdismod xdebug
-
 # Configure Apache
 RUN a2enmod rewrite && \
     echo "ServerName localhost" >> /etc/apache2/apache2.conf
