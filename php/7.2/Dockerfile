@@ -30,7 +30,7 @@ RUN apt-get update && \
 # Configure PHP CLI
 COPY files/jmleroux.ini /etc/php/7.2/mods-available/jmleroux.ini
 RUN phpenmod jmleroux
-RUN phpdismod xdebug
+RUN phpenmod xdebug
 
 # Add a "docker" user
 RUN useradd docker --shell /bin/bash --create-home \
@@ -39,17 +39,11 @@ RUN useradd docker --shell /bin/bash --create-home \
   && echo 'docker:secret' | chpasswd
 
 # Install composer
-RUN curl -sSL https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY --from=composer:2.0 /usr/bin/composer /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
-
-# Copy "entrypoint"
-COPY ./files/entrypoint.sh /usr/local/bin
-RUN chmod a+x /usr/local/bin/entrypoint.sh
 
 # Define "docker" as current user
 USER docker
 WORKDIR /home/docker/
 
 ENV PATH=bin:vendor/bin:$PATH
-
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
