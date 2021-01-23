@@ -16,7 +16,8 @@ do
 
     cd ${path}
     docker build --no-cache -t jmleroux/${images[i]}:${TAG} .
-    docker run  -e XDEBUG_MODE=debug jmleroux/${images[i]}:${TAG} php -i | grep Debugger
+    echo "Debugger test for jmleroux/${images[i]}:${TAG}"
+    docker run -e XDEBUG_MODE=debug jmleroux/${images[i]}:${TAG} php -i | grep Debugger
 
     if docker inspect jmleroux/${images[i]}:${TAG} &> /dev/null; then
         continue
