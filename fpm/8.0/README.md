@@ -10,7 +10,7 @@ services:
             - jmleroux
 
     fpm:
-        build: .
+        image: 'jmleroux/fpm:8.0'
         environment:
             COMPOSER_HOME: '/var/www/.composer'
             PHP_IDE_CONFIG: 'serverName=jmleroux-web'
