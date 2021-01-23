@@ -28,4 +28,4 @@ RUN phpenmod xdebug
 USER docker
 
 # Run FPM in foreground
-CMD ["sudo", "php-fpm7.2", "-F"]
+CMD ["sudo", "-E", "php-fpm7.2", "-F"]

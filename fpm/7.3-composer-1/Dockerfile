@@ -28,4 +28,4 @@ RUN mkdir -p /run/php && sed -i "s/listen = .*/listen = 9001/" /etc/php/7.3/fpm/
 USER docker
 
 # Run FPM in foreground
-CMD ["sudo", "php-fpm7.3", "-F"]
+CMD ["sudo", "-E", "php-fpm7.3", "-F"]
