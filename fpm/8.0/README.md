@@ -39,3 +39,31 @@ services:
 networks:
     jmleroux:
 ```
+
+**You will then be able to use the command line:**
+
+To get php info:
+
+```bash
+docker-compose run -u www-data --rm fpm php -i
+```
+
+Execute a Symfony command:
+
+```bash
+docker-compose run -u www-data --rm fpm bin/console
+```
+
+etc.
+
+To active Xdebug debugging in CLI:
+
+```bash
+XDEBUG_MODE=debug docker-compose run -u www-data --rm fpm php -i | grep Step
+```
+
+To start FPM with debugging:
+
+```bash
+XDEBUG_MODE=debug docker-compose up -d fpm
+```
