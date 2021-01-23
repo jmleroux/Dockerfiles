@@ -30,7 +30,6 @@ RUN apt-get update && \
 # Configure PHP CLI
 COPY files/jmleroux.ini /etc/php/7.4/mods-available/jmleroux.ini
 RUN phpenmod jmleroux
-RUN phpdismod xdebug
 
 # Add a "docker" user
 RUN useradd docker --shell /bin/bash --create-home \
@@ -51,5 +50,3 @@ USER docker
 WORKDIR /home/docker/
 
 ENV PATH=bin:vendor/bin:$PATH
-
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
