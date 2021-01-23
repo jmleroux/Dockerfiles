@@ -30,7 +30,6 @@ RUN apt-get update && \
 # Configure PHP CLI
 COPY files/jmleroux.ini /etc/php/7.3/mods-available/jmleroux.ini
 RUN phpenmod jmleroux
-RUN phpdismod xdebug
 
 # Add a "docker" user
 RUN useradd docker --shell /bin/bash --create-home \
