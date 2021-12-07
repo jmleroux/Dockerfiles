@@ -16,10 +16,20 @@ jobs:
                   username: ${{ secrets.DOCKERHUB_USERNAME }}
                   password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-            - name: Build and push to Docker Hub
+            - name: Build and push PHP to Docker Hub
               uses: docker/build-push-action@v2
               with:
                   context: ./php/${{ matrix.php_version }}
+                  # Note: tags has to be all lower-case
+                  tags: |
+                      jmleroux/php:${{ matrix.php_version }}
+                  # build on feature branches, push only on main branch
+                  push: ${{ github.ref == 'refs/heads/main' }}
+
+            - name: Build and push FPM to Docker Hub
+              uses: docker/build-push-action@v2
+              with:
+                  context: ./fpm/${{ matrix.php_version }}
                   # Note: tags has to be all lower-case
                   tags: |
                       jmleroux/php:${{ matrix.php_version }}
