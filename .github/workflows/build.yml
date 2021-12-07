@@ -32,7 +32,7 @@ jobs:
                   context: ./fpm/${{ matrix.php_version }}
                   # Note: tags has to be all lower-case
                   tags: |
-                      jmleroux/php:${{ matrix.php_version }}
+                      jmleroux/fpm:${{ matrix.php_version }}
                   # build on feature branches, push only on main branch
                   push: ${{ github.ref == 'refs/heads/main' }}
 
