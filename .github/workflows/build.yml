@@ -5,7 +5,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                php_version: ['8.0', '7.4', '7.3', '7.3-composer-1', '7.2', '5.6']
+                php_version: ['8.0', '7.4', '7.3', '7.3-composer-1', '7.2']
         steps:
             - uses: actions/checkout@v2
             - run: test/run_tests.sh ${{ matrix.php_version }}
@@ -27,7 +27,7 @@ jobs:
                   # Note: tags has to be all lower-case
                   tags: |
                       jmleroux/php:${{ matrix.php_version }}
-                  # build on feature branches, push only on main branch
+                  # build on feature branches, push only on master branch
                   push: ${{ github.ref == 'refs/heads/master' }}
 
             - name: Build and push FPM to Docker Hub
@@ -37,7 +37,7 @@ jobs:
                   # Note: tags has to be all lower-case
                   tags: |
                       jmleroux/fpm:${{ matrix.php_version }}
-                  # build on feature branches, push only on main branch
+                  # build on feature branches, push only on master branch
                   push: ${{ github.ref == 'refs/heads/master' }}
 
             - name: Image digest
