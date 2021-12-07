@@ -28,7 +28,7 @@ jobs:
                   tags: |
                       jmleroux/php:${{ matrix.php_version }}
                   # build on feature branches, push only on main branch
-                  push: ${{ github.ref == 'refs/heads/main' }}
+                  push: true
 
             - name: Build and push FPM to Docker Hub
               uses: docker/build-push-action@v2
